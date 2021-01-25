@@ -23,18 +23,22 @@ final class TaskObjectsCompare {
 
         //sorting using custom comparator by name ascending
         Collections.sort(people, new PersonByNameComparator());
-        System.out.println("Comparator by name ascending: " + people);
+        out.println("Comparator by name ascending: " + people);
 
         //sorting using custom comparator by name descending - as lambda
         Collections.sort(people, (p1, p2) -> p2.name().compareTo(p1.name()));
-        System.out.println("Comparator by name descending:" + people);
+        out.println("Comparator by name descending:" + people);
+
+        //sorting using custom comparator by id descending - using method reference and static Comparator.comparingInt()
+        Collections.sort(people, Comparator.comparingInt(Person::id).reversed());
+        out.println("Comparator by id descending:" + people);
 
         //comparing two objects using helper Objects class and its compare() with comparator
-        System.out.println("Lukasz - Anthony/by name asc/returns positive number: " + Objects.compare(lukasz, anthony, new PersonByNameComparator()));
-        System.out.println("Lukasz - Anthony/by id asc/returns negative number: " + Objects.compare(lukasz, anthony, Comparator.comparingInt(Person::id)));
-        System.out.println("Two nulls are equal - no comparator used/returns zero: " + Objects.compare(null, null, null));
-        System.out.println("Null - Lukasz/Null safe comparator (null first)/returns negative number: " + Objects.compare(null, lukasz, Comparator.nullsFirst(new PersonByNameComparator())));
-        System.out.println("Null - Lukasz/Null safe comparator (null last)/returns positive number:  " + Objects.compare(null, lukasz, Comparator.nullsLast(new PersonByNameComparator())));
+        out.println("Lukasz - Anthony/by name asc/returns positive number: " + Objects.compare(lukasz, anthony, new PersonByNameComparator()));
+        out.println("Lukasz - Anthony/by id asc/returns negative number: " + Objects.compare(lukasz, anthony, Comparator.comparingInt(Person::id)));
+        out.println("Two nulls are equal - no comparator used/returns zero: " + Objects.compare(null, null, null));
+        out.println("Null - Lukasz/Null safe comparator (null first)/returns negative number: " + Objects.compare(null, lukasz, Comparator.nullsFirst(new PersonByNameComparator())));
+        out.println("Null - Lukasz/Null safe comparator (null last)/returns positive number:  " + Objects.compare(null, lukasz, Comparator.nullsLast(new PersonByNameComparator())));
 
         //throws NPE - not null safe comparator
         Objects.compare(null, lukasz, Comparator.comparing(Person::name, String.CASE_INSENSITIVE_ORDER));
@@ -43,6 +47,8 @@ final class TaskObjectsCompare {
 
 
 /**
+ * Represents Person with name and id.
+ *
  * Implements {@link Comparable<Person>} for comparing by id/ascending as natural order.
  */
 record Person(int id, String name) implements Comparable<Person> {
