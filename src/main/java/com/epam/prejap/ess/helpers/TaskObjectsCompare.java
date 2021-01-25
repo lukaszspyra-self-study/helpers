@@ -34,7 +34,10 @@ final class TaskObjectsCompare {
         System.out.println("Lukasz - Anthony/by id asc/returns negative number: " + Objects.compare(lukasz, anthony, Comparator.comparingInt(Person::id)));
         System.out.println("Two nulls are equal - no comparator used/returns zero: " + Objects.compare(null, null, null));
         System.out.println("Null - Lukasz/Null safe comparator (null first)/returns negative number: " + Objects.compare(null, lukasz, Comparator.nullsFirst(new PersonByNameComparator())));
-        System.out.println("Null - Lukasz/Null safe comparator (null last)/returns positive number: " + Objects.compare(null, lukasz, Comparator.nullsLast(new PersonByNameComparator())));
+        System.out.println("Null - Lukasz/Null safe comparator (null last)/returns positive number:  " + Objects.compare(null, lukasz, Comparator.nullsLast(new PersonByNameComparator())));
+
+        //throws NPE - not null safe comparator
+        Objects.compare(null, lukasz, Comparator.comparing(Person::name, String.CASE_INSENSITIVE_ORDER));
     }
 }
 
