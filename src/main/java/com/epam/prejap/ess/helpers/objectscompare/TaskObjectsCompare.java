@@ -1,4 +1,4 @@
-package com.epam.prejap.ess.helpers;
+package com.epam.prejap.ess.helpers.objectscompare;
 
 import java.io.PrintStream;
 import java.util.*;
