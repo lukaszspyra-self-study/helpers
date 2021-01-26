@@ -6,7 +6,7 @@
 
     <groupId>com.epam.prejap.ess</groupId>
     <artifactId>helpers</artifactId>
-    <version>0.1</version>
+    <version>0.2</version>
     <name>Java Essentail Classes :: Helpers</name>
     <description>Solutions for the task about helpers</description>
     <url>https://careers.epam-poland.pl/training/juniors-java-online-program</url>
@@ -14,9 +14,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <project.java.version>14</project.java.version>
-        <maven.compiler.source>${project.java.version}</maven.compiler.source>
-        <maven.compiler.target>${project.java.version}</maven.compiler.target>
+        <project.java.version>15</project.java.version>
         <maven.compiler.release>${project.java.version}</maven.compiler.release>
         <version.maven>3.6.0</version.maven>
         <!-- plugin versions should go here, so below they can be omitted -->
@@ -78,7 +76,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${version.plugin.maven.surefire}</version>
                 <configuration>
-                    <argLine>-XX:+UnlockExperimentalVMOptions -XX:+UseEpsilonGC -Dtestng.dtd.http=true -Xmx256m</argLine>
+                    <argLine>--enable-preview -XX:+UnlockExperimentalVMOptions -XX:+UseEpsilonGC -Dtestng.dtd.http=true -Xmx256m</argLine>
                 </configuration>
             </plugin>
             <plugin>
